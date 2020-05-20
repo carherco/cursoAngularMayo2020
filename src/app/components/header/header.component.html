@@ -1,9 +1,9 @@
 <h1>Curso Angular</h1>
 
-<app-login *ngIf="!isLogged"></app-login>
+<app-login *ngIf="!isLogged()"></app-login>
 
-<div *ngIf="isLogged">
-  <span>Hola, {{ username }}</span>
+<div *ngIf="isLogged()">
+  <span>Hola, {{ getUsername() }}</span>
   <button (click)="logout()">Salir</button>
 </div>
 
