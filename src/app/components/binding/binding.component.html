@@ -1,0 +1,22 @@
+<h2 [appHighlight]="miColor" time="700" [attr.class]="claseDinamica">Binding</h2>
+
+<span appHighlight *ngIf="name" [className]="claseDinamica">Hola, {{ name }}</span>
+
+<span *ngIf="name !== ''" class="clase1 clase2" [class.negrita]=" name =='pedro'">Hola  {{ nombreCompleto() }}</span>
+
+<input class="datepicker" value="{{name}}" (keyup)="onKeyUp2($event.target.value)">
+<input [value]="name" (keyup)="onKeyUp($event)">
+
+<input value="{{name}}" (keyup)="name = $event.target.value">
+<input [(ngModel)]="apellido">
+
+<button (click)="cambiarNombre($event)">Cambiar Nombre</button>
+
+<span class="header saludo" [class.negrita]="name === 'Pedro'">Hola, {{ nombreCompleto() }}</span>
+<button [style.color]="miColor">Exit</button>
+
+<!-- <select [(ngModel)]="hero.id">
+  <ng-container *ngFor="let h of heroes">
+    <option *ngIf="h.emotion !== 'sad'"  [value]="h.id"></option>
+  </ng-container>
+</select> -->

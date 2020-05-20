@@ -1,0 +1,49 @@
+<h2>CRUD V2</h2>
+
+<div>
+  <h3>Alta de usuarios</h3>
+  <form>
+    <div>
+      <label>Nombre: </label>
+      <input name="name" [(ngModel)]="newUser.name"/>
+    </div>
+    <div>
+      <label>Correo: </label>
+      <input name="email" [(ngModel)]="newUser.email"/>
+    </div>
+    <div>
+      <label>Teléfono: </label>
+      <input name="phone" [(ngModel)]="newUser.phone"/>
+    </div>
+    <button (click)="add()">Añadir</button>
+  </form>
+</div>
+
+<div>
+  <h3>Listado de usuarios</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Id</th>
+        <th>Nombre</th>
+        <th>Email</th>
+        <th>Teléfono</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users"
+          [class.selected]="user.id === userSelected?.id"
+          (click)="selectUser(user)" >
+        <td>{{ user.id }}</td>
+        <td>{{ user.name }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.phone }}</td>
+        <td><button (click)="deleteV1(user)">Eliminar</button></td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<app-detalle *ngIf="userSelected" [user]="userSelected" (deleteEvent)="deleteV1($event)"></app-detalle>

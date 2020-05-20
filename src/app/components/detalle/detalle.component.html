@@ -1,0 +1,19 @@
+<div *ngIf="user">
+  <h3>Detalle del usuario {{ user.id }}</h3>
+  <form>
+      <div>
+        <label>Nombre: </label>
+        <input name="name" [(ngModel)]="user.name"/>
+      </div>
+      <div>
+        <label>Correo: </label>
+        <input name="email" [(ngModel)]="user.email"/>
+      </div>
+      <div>
+        <label>Teléfono: </label>
+        <input name="phone" [(ngModel)]="user.phone"/>
+      </div>
+
+      <button (click)="delete()">Eliminar</button>
+    </form>
+</div>
