@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +19,9 @@ import { CrudComponent } from './components/crud/crud.component';
 import { MasterComponent } from './components/master/master.component';
 import { DetalleComponent } from './components/detalle/detalle.component';
 import { LoginComponent } from './components/login/login.component';
+import { TemplateVariablesComponent } from './components/template-variables/template-variables.component';
+import { FormTemplateComponent } from './components/form-template/form-template.component';
+import { ObservablesComponent } from './components/observables/observables.component';
 
 @NgModule({
   declarations: [
@@ -35,12 +39,16 @@ import { LoginComponent } from './components/login/login.component';
     CrudComponent,
     MasterComponent,
     DetalleComponent,
-    LoginComponent
+    LoginComponent,
+    TemplateVariablesComponent,
+    FormTemplateComponent,
+    ObservablesComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

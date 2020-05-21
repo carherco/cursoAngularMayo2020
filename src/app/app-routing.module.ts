@@ -6,7 +6,9 @@ import { BindingComponent } from './components/binding/binding.component';
 import { EjemploPipeComponent } from './components/ejemplo-pipe/ejemplo-pipe.component';
 import { FirstComponent } from './components/first/first.component';
 import { MasterComponent } from './components/master/master.component';
-import { LoginComponent } from './components/login/login.component';
+import { TemplateVariablesComponent } from './components/template-variables/template-variables.component';
+import { FormTemplateComponent } from './components/form-template/form-template.component';
+import { ObservablesComponent } from './components/observables/observables.component';
 
 
 const routes: Routes = [
@@ -18,6 +20,9 @@ const routes: Routes = [
   { path: 'binding', component: BindingComponent },
   { path: 'pipes', component: EjemploPipeComponent },
   { path: 'crud/varioscompomente', component: MasterComponent },
+  { path: 'trv', component: TemplateVariablesComponent },
+  { path: 'forms/template', component: FormTemplateComponent },
+  { path: 'observables', component: ObservablesComponent },
 ];
 
 @NgModule({

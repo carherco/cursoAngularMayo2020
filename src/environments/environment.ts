@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://localhost:8080/proyectoX/api-dev'
+  apiUrl: 'https://jsonplaceholder.typicode.com/'
 };
 
 /*

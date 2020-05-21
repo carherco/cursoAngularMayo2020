@@ -1,6 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { User } from 'src/app/model/user';
 import { UserService } from 'src/app/services/user.service';
+import { of, fromEvent } from 'rxjs';
+import { map, filter, debounceTime, distinctUntilChanged } from 'rxjs/operators';
 
 @Component({
   selector: 'app-master',
@@ -9,17 +11,41 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class MasterComponent implements OnInit {
 
-  users: User[];  // Array<User>
+  users: User[] = [];  // Array<User>
   newUser: User;
   userSelected: User;
 
+  @ViewChild('emailSearch', {static: true})
+  emailRef: ElementRef;
+
   constructor(private userManager: UserService) {
-    this.users = this.userManager.get();
+
+    let obs = this.userManager.get();
+    obs.subscribe(
+      respuestaServer => this.users = respuestaServer,
+      error => console.log(error),
+      () => console.log('FIN')
+    );
+
     this.newUser = new User(11);
   }
 
   ngOnInit(): void {
-
+    const eventos$ = fromEvent(this.emailRef.nativeElement, 'keyup');
+    eventos$
+    .pipe(
+      debounceTime(500),
+      map( (keyboardEvent: any) => keyboardEvent.target.value ),
+      filter( value => value.length > 3 ),
+      distinctUntilChanged()
+    )
+    .subscribe(
+      (value) => {
+        this.userManager.get(value).subscribe(
+          respuestaServer => this.users = respuestaServer,
+        );
+      }
+    );
   }
 
   selectUser(user: User) {

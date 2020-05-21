@@ -1,0 +1,49 @@
+<div>
+  <h2>User Form (Template Driven)</h2>
+
+  {{ user | json }}
+
+  <form (ngSubmit)="submit();" #userForm="ngForm">
+    <div>
+      <label for="name">Name: </label>
+      <input type="text" id="name" name="name" [(ngModel)]="user.name" required #spy #name="ngModel">
+      <p>{{ spy.className }}</p>
+      <p *ngIf="name.invalid" class="danger">Este campo es obligatorio.</p>
+    </div>
+
+    <div>
+      <label for="username">Username: </label>
+      <input type="text" id="username" name="username" [(ngModel)]="user.username" required #username="ngModel">
+    </div>
+
+    <div>
+      <label for="email">Email: </label>
+      <input type="email" id="email" name="email" email minLength="8" [(ngModel)]="user.email" #email="ngModel">
+      <p *ngIf="email.errors?.email" class="danger">Este campo tiene que ser un email.</p>
+      <p *ngIf="email.errors?.minLength" class="danger">Este campo tiene que tener 8 caracteres mínimo.</p>
+      {{ email.errors | json }}
+    </div>
+
+    <h4>Address</h4>
+    <div>
+      <div>
+        <label for="street">Street:
+          <input type="text" id="street" name="street" [(ngModel)]="user.address.street">
+        </label>
+      </div>
+      <div>
+        <label for="city">City:
+          <input type="text" id="city" name="city" [(ngModel)]="user.address.city">
+        </label>
+      </div>
+      <div>
+        <label for="zipcode">Zip Code:
+          <input type="text" id="zipcode" name="zipcode" [(ngModel)]="user.address.zipcode">
+        </label>
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="userForm.invalid">Submit</button>
+
+  </form>
+</div>
