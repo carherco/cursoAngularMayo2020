@@ -1,6 +1,6 @@
 <h2 [appHighlight]="miColor" time="700" [attr.class]="claseDinamica">Binding</h2>
 
-<span appHighlight *ngIf="name" [className]="claseDinamica">Hola, {{ name }}</span>
+<span appHighlight [className]="claseDinamica">Hola, {{ name }}</span>
 
 <span *ngIf="name !== ''" class="clase1 clase2" [class.negrita]=" name =='pedro'">Hola  {{ nombreCompleto() }}</span>
 

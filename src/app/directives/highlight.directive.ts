@@ -14,11 +14,11 @@ export class HighlightDirective implements OnInit {
   time = 2000;
 
   constructor(private elementRef: ElementRef) {
-    setTimeout( this.onMouseEnter , this.time); // this.time = 2000
+
   }
 
   ngOnInit(): void {
-    setTimeout( this.onMouseEnter , this.time); // this.time = "lo que venga por input"
+
   }
 
   @HostListener('mouseenter', ['$event'])
