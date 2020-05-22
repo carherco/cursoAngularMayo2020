@@ -4,6 +4,7 @@ import { USERS } from '../data/users';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { retry, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -29,12 +30,27 @@ export class UserService {
       url = url + '?email=' + email;
     }
 
-    return this.http.get<User[]>(url);
+    return this.http.get<User[]>(url).pipe(
+      retry(1),
+      tap( r => { this.users = r; } )
+    );
     // return of(USERS);
   }
 
-  getOne(id): User {
-    return this.users.find( u => u.id === id );
+  getOne(id: number): User {
+    console.log('paso 2', id);
+    console.log('paso 2b', USERS.find( u => u.id === id ));
+    return USERS.find( u => u.id === id );
+
+
+  }
+
+  getOneObservable(id: number): Observable<User> {
+    let url = this.url + '/' + id;
+    return this.http.get<User>(url);
+
+    let user = USERS.find( u => u.id === id );
+    return of(user);
   }
 
   add(user: User) {

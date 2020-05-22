@@ -41,7 +41,10 @@
         <td>{{ user.name }}</td>
         <td>{{ user.email }}</td>
         <td>{{ user.phone }}</td>
-        <td><button (click)="deleteV1(user)">Eliminar</button></td>
+        <td>
+          <button (click)="goToEdit(user)">Editar</button>
+          <button (click)="deleteV1(user)">Eliminar</button>
+        </td>
       </tr>
     </tbody>
   </table>
